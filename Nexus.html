@@ -16,12 +16,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- TUS COLORES DE MARCA --- */
+        /* --- COLORES DE TU MARCA --- */
         :root {
             --bg-dark: #050505;
             --text-main: #eef1f0;
+            --accent-cyan: #00f3ff;
+            --accent-purple: #bc13fe;
             
-            /* Colores de Botones */
+            /* Botones */
             --btn-linkedin: #0077b6;
             --btn-email: #ffc300;
             --btn-ipn: #ff3366;
@@ -40,36 +42,34 @@
 
         .font-display { font-family: 'Outfit', sans-serif; }
 
-        /* --- ANIMACIONES --- */
+        /* --- ANIMACIÓN FLOTANTE --- */
         @keyframes floatCard {
             0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(1deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
             100% { transform: translateY(0px) rotate(0deg); }
         }
 
         .floating-card { animation: floatCard 7s ease-in-out infinite; }
 
-        /* --- ESTILO DE LA TARJETA (VERSIÓN CRISTAL/GAMER) --- */
+        /* --- ESTILO DE TARJETA CON BORDE GRADIENTE --- */
+        .nexus-card-wrapper {
+            position: relative;
+            padding: 2px; /* Grosor del borde de color */
+            border-radius: 24px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple)); /* LAS LÍNEAS DE COLOR */
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+            z-index: 10;
+        }
+
         .nexus-card {
             width: 340px;
-            /* Fondo semitransparente oscuro (Glassmorphism) */
-            background: rgba(20, 20, 20, 0.85);
+            background: rgba(15, 15, 15, 0.9); /* Fondo oscuro semitransparente */
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            
-            /* Bordes sutiles y elegantes */
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            border-left: 1px solid rgba(255, 255, 255, 0.2);
-            
-            /* Acento de color lateral (Tu toque personal) */
-            border-left: 4px solid var(--btn-linkedin); 
-            
-            border-radius: 24px;
+            border-radius: 22px; /* Un poco menos que el wrapper para encajar */
             overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
             position: relative;
-            z-index: 10;
+            height: 100%;
         }
 
         /* Header de la tarjeta */
@@ -85,30 +85,30 @@
             position: absolute;
             inset: 0;
             background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0);
-            background-size: 24px 24px;
-            opacity: 0.6;
+            background-size: 20px 20px;
+            opacity: 0.5;
         }
 
         /* Avatar */
         .card-avatar-container {
             width: 110px;
             height: 110px;
-            margin: -55px auto 15px; /* Sube sobre el header */
+            margin: -55px auto 15px;
             border-radius: 50%;
-            padding: 4px;
-            background: rgba(30, 30, 30, 0.9);
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 3px;
+            background: #111;
+            /* Borde doble sutil */
+            border: 2px solid var(--accent-cyan);
+            box-shadow: 0 0 20px rgba(0,243,255,0.2);
             position: relative;
             z-index: 20;
         }
 
         .card-avatar-container img {
             width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
-            border: 2px solid var(--btn-linkedin); /* Borde azul sutil */
         }
 
-        /* Botones Sólidos (Estilo Bloque) */
+        /* Botones Sólidos */
         .card-btn {
             display: flex; align-items: center;
             padding: 12px 16px;
@@ -117,17 +117,17 @@
             color: white; text-decoration: none;
             transition: all 0.2s;
             margin-bottom: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
         .card-btn:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2); 
+            transform: translateY(-2px) scale(1.01); 
+            box-shadow: 0 8px 15px rgba(0,0,0,0.3); 
             filter: brightness(1.1); 
         }
         .card-btn i { font-size: 18px; margin-right: 12px; width: 20px; text-align: center; }
 
-        /* Colores Específicos */
+        /* Colores */
         .c-linkedin { background-color: var(--btn-linkedin); }
         .c-email { background-color: var(--btn-email); color: #332400; }
         .c-ipn { background-color: var(--btn-ipn); }
@@ -135,63 +135,59 @@
         .c-eco { background-color: var(--btn-eco); }
         .c-tiktok { background-color: var(--btn-tiktok); color: black; }
 
-        /* Botón Portafolio (Destacado Blanco) */
+        /* Botón Portafolio Blanco */
         .btn-portfolio-white {
             background: white; color: black;
             font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
             font-size: 12px; padding: 12px 24px;
             border-radius: 50px;
             display: inline-flex; align-items: center; gap: 8px;
-            box-shadow: 0 0 20px rgba(255,255,255,0.15);
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
             transition: all 0.3s;
             margin-top: 5px; margin-bottom: 25px;
         }
         .btn-portfolio-white:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255,255,255,0.3);
+            box-shadow: 0 0 30px rgba(255,255,255,0.4);
         }
 
-        /* TOOLTIP MEJORADO */
+        /* --- TOOLTIP --- */
         .feature-btn { position: relative; cursor: pointer; transition: all 0.3s; }
         .feature-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
         
         .tooltip {
             visibility: hidden; opacity: 0;
             width: 240px;
-            background: rgba(10, 10, 10, 0.95);
+            background: rgba(15, 15, 15, 0.95);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            color: #fff;
-            text-align: center;
-            border-radius: 12px;
-            padding: 15px;
-            position: absolute;
-            z-index: 50;
-            bottom: 130%;
-            left: 50%;
+            color: #fff; text-align: center;
+            border-radius: 12px; padding: 15px;
+            position: absolute; z-index: 50;
+            bottom: 130%; left: 50%;
             transform: translateX(-50%) translateY(10px);
             border: 1px solid rgba(0, 243, 255, 0.3);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             font-size: 12px; line-height: 1.5;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            pointer-events: none;
+            transition: all 0.3s; pointer-events: none;
         }
-        
         .tooltip::after {
             content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px;
             border-width: 6px; border-style: solid;
             border-color: rgba(0, 243, 255, 0.3) transparent transparent transparent;
         }
+        .feature-btn:hover .tooltip { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
+        .tooltip strong { color: var(--accent-cyan); display: block; margin-bottom: 4px; }
 
-        .feature-btn:hover .tooltip, .feature-btn:focus .tooltip { 
-            visibility: visible; opacity: 1; 
-            transform: translateX(-50%) translateY(0);
+        /* CANVAS FONDO */
+        #particles-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;
         }
-        .tooltip strong { color: #00f3ff; display: block; margin-bottom: 4px; font-size: 13px; }
-
     </style>
 </head>
 <body class="selection:bg-cyan-500 selection:text-black">
+
+    <!-- CANVAS FONDO (RESTAURADO) -->
+    <canvas id="particles-canvas"></canvas>
 
     <nav class="fixed w-full z-50 top-0 left-0 p-6 flex justify-between items-center backdrop-blur-md bg-black/30 border-b border-white/5">
         <div class="flex items-center gap-3">
@@ -205,9 +201,8 @@
 
     <main class="relative min-h-screen flex items-center justify-center pt-24 pb-12 px-6 overflow-hidden">
         
-        <!-- Fondos Ambientales -->
+        <!-- Fondos Ambientales Suaves -->
         <div class="absolute inset-0 bg-black -z-20"></div>
-        <div class="absolute inset-0 opacity-20 -z-10" style="background-image: radial-gradient(#333 1px, transparent 1px); background-size: 30px 30px;"></div>
         <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-purple-900/10 rounded-full blur-[150px] -z-10"></div>
         <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-900/10 rounded-full blur-[150px] -z-10"></div>
 
@@ -231,7 +226,6 @@
 
                 <!-- BOTONES DE CARACTERÍSTICAS -->
                 <div class="flex flex-wrap gap-4 pt-4">
-                    
                     <div class="feature-btn flex items-center gap-2 text-sm font-bold text-slate-200 bg-white/5 px-5 py-3 rounded-lg border border-white/10" tabindex="0">
                         <i class="fa-solid fa-bolt text-yellow-400"></i> Creación Instantánea
                         <div class="tooltip">
@@ -239,7 +233,6 @@
                             Genera tu tarjeta en segundos importando tus datos de LinkedIn o redes sociales automáticamente.
                         </div>
                     </div>
-
                     <div class="feature-btn flex items-center gap-2 text-sm font-bold text-slate-200 bg-white/5 px-5 py-3 rounded-lg border border-white/10" tabindex="0">
                         <i class="fa-solid fa-wand-magic-sparkles text-purple-400"></i> Asistente IA
                         <div class="tooltip">
@@ -247,7 +240,6 @@
                             ¿No sabes qué poner? Nuestra IA redacta biografías profesionales y mejora tus fotos al instante.
                         </div>
                     </div>
-
                     <div class="feature-btn flex items-center gap-2 text-sm font-bold text-slate-200 bg-white/5 px-5 py-3 rounded-lg border border-white/10" tabindex="0">
                         <i class="fa-solid fa-mobile-screen text-green-400"></i> 100% Móvil
                         <div class="tooltip">
@@ -255,73 +247,73 @@
                             Diseñado para compartir por WhatsApp, QR o NFC. Carga instantánea y diseño adaptativo.
                         </div>
                     </div>
-
                 </div>
             </div>
 
-            <!-- TARJETA DEMO (ESTILO CRISTAL + INFO CORRECTA) -->
+            <!-- TARJETA DEMO -->
             <div class="flex justify-center order-1 lg:order-2 perspective-1000">
                 
-                <!-- Efectos de Fondo detrás de la tarjeta -->
+                <!-- Efecto de brillo trasero -->
                 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-cyan-500/20 rounded-full blur-[80px] -z-10 animate-pulse"></div>
 
-                <!-- LA TARJETA NEXUS -->
-                <div class="nexus-card floating-card">
-                    
-                    <!-- Header -->
-                    <div class="card-header-bg">
-                        <!-- Share button (Visual) -->
-                        <div class="absolute top-4 right-4 w-8 h-8 bg-black/40 backdrop-blur rounded-full flex items-center justify-center text-white/80 border border-white/10">
-                            <i class="fa-solid fa-share-nodes text-xs"></i>
-                        </div>
-                    </div>
-
-                    <!-- Cuerpo -->
-                    <div class="px-6 pb-8 text-center">
+                <!-- WRAPPER CON EL BORDE DE COLOR -->
+                <div class="nexus-card-wrapper floating-card">
+                    <div class="nexus-card">
                         
-                        <!-- 1. Avatar -->
-                        <div class="card-avatar-container">
-                            <img src="profilecv.png" onerror="this.src='https://cdn.midjourney.com/7b22a01d-55e1-4828-b80c-7b247f93796d/0_0.png'" alt="Sergio">
-                        </div>
-
-                        <!-- 2. Nombre y Cargo -->
-                        <h2 class="text-2xl font-black text-white mb-1 font-display tracking-tight">Sergio Garduño</h2>
-                        <p class="text-xs font-bold text-pink-500 uppercase tracking-widest mb-4">Mecatrónico & Dev</p>
-                        
-                        <!-- 3. BIO (CORRECTA) -->
-                        <p class="text-[13px] text-slate-300 leading-relaxed mb-5 px-1 font-medium border-b border-white/5 pb-4">
-                            Ingeniero Mecatrónico enfocado en desarrollos IoT y protección de la flora y fauna con iniciativas verdes.
-                        </p>
-
-                        <!-- 4. BOTÓN PORTAFOLIO BLANCO (DESTACADO) -->
-                        <a href="#" class="btn-portfolio-white">
-                            <i class="fa-solid fa-briefcase"></i> Portafolio Digital
-                        </a>
-
-                        <!-- 5. LISTA DE BOTONES (TUS COLORES) -->
-                        <div class="space-y-3">
-                            <a href="#" class="card-btn c-linkedin">
-                                <i class="fa-brands fa-linkedin-in"></i> Ver Perfil de LinkedIn
-                            </a>
-                            
-                            <a href="#" class="card-btn c-email">
-                                <i class="fa-regular fa-envelope"></i> sgj.cheko@gmail.com
-                            </a>
-                            
-                            <a href="#" class="card-btn c-ipn">
-                                <i class="fa-solid fa-graduation-cap"></i> Correo Institucional
-                            </a>
-
-                            <div class="grid grid-cols-2 gap-3">
-                                <a href="#" class="card-btn c-whatsapp justify-center">
-                                    <i class="fa-brands fa-whatsapp m-0"></i>
-                                </a>
-                                <a href="#" class="card-btn c-eco justify-center">
-                                    <i class="fa-solid fa-leaf m-0"></i>
-                                </a>
+                        <!-- Header -->
+                        <div class="card-header-bg">
+                            <div class="absolute top-4 right-4 w-8 h-8 bg-black/40 backdrop-blur rounded-full flex items-center justify-center text-white/80 border border-white/10">
+                                <i class="fa-solid fa-share-nodes text-xs"></i>
                             </div>
                         </div>
 
+                        <!-- Cuerpo -->
+                        <div class="px-6 pb-8 text-center">
+                            
+                            <!-- Avatar -->
+                            <div class="card-avatar-container">
+                                <img src="profilecv.png" onerror="this.src='https://cdn.midjourney.com/7b22a01d-55e1-4828-b80c-7b247f93796d/0_0.png'" alt="Sergio">
+                            </div>
+
+                            <!-- Info -->
+                            <h2 class="text-2xl font-black text-white mb-1 font-display tracking-tight">Sergio Garduño</h2>
+                            <p class="text-xs font-bold text-pink-500 uppercase tracking-widest mb-4">Mecatrónico & Dev</p>
+                            
+                            <!-- Bio -->
+                            <p class="text-[13px] text-slate-300 leading-relaxed mb-5 px-1 font-medium border-b border-white/5 pb-4">
+                                Ingeniero Mecatrónico enfocado en desarrollos IoT y protección de la flora y fauna con iniciativas verdes.
+                            </p>
+
+                            <!-- Portafolio -->
+                            <a href="#" class="btn-portfolio-white">
+                                <i class="fa-solid fa-briefcase"></i> Portafolio Digital
+                            </a>
+
+                            <!-- Botones -->
+                            <div class="space-y-3">
+                                <a href="#" class="card-btn c-linkedin">
+                                    <i class="fa-brands fa-linkedin-in"></i> Ver Perfil de LinkedIn
+                                </a>
+                                
+                                <a href="#" class="card-btn c-email">
+                                    <i class="fa-regular fa-envelope"></i> sgj.cheko@gmail.com
+                                </a>
+                                
+                                <a href="#" class="card-btn c-ipn">
+                                    <i class="fa-solid fa-graduation-cap"></i> Correo Institucional
+                                </a>
+
+                                <div class="grid grid-cols-2 gap-3">
+                                    <a href="#" class="card-btn c-whatsapp justify-center">
+                                        <i class="fa-brands fa-whatsapp m-0"></i>
+                                    </a>
+                                    <a href="#" class="card-btn c-eco justify-center">
+                                        <i class="fa-solid fa-leaf m-0"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -335,7 +327,78 @@
         </p>
     </footer>
 
+    <!-- SCRIPT DE PARTÍCULAS (EL QUE TE GUSTABA) -->
+    <script>
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles;
+
+        // Configuración
+        const particleCount = 60;
+        const connectionDistance = 140;
+
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 1;
+                this.color = Math.random() > 0.5 ? '#00f3ff' : '#bc13fe'; // Cian y Morado
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if(this.x < 0 || this.x > width) this.vx *= -1;
+                if(this.y < 0 || this.y > height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI*2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = 0.6;
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            particles = [];
+            for(let i=0; i<particleCount; i++) particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0,0,width,height);
+            for(let i=0; i<particles.length; i++) {
+                let p1 = particles[i];
+                p1.update();
+                p1.draw();
+                // Conexiones (Líneas)
+                for(let j=i; j<particles.length; j++) {
+                    let p2 = particles[j];
+                    let d = Math.hypot(p1.x-p2.x, p1.y-p2.y);
+                    if(d < connectionDistance) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(0, 243, 255, ${0.15 - d/1000})`; // Líneas sutiles cian
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => { resize(); init(); });
+        resize(); init(); animate();
+    </script>
+
 </body>
 </html>
-
-

@@ -19,17 +19,15 @@
         /* --- TUS COLORES DE MARCA --- */
         :root {
             --bg-dark: #050505;
-            --card-bg: #000000; /* Fondo negro puro como en la foto */
+            --card-bg: #000000;
             --text-main: #eef1f0;
             
-            /* Colores Exactos de tus botones */
+            /* Colores de Botones */
             --btn-linkedin: #0077b6;
             --btn-email: #ffc300;
             --btn-ipn: #ff3366;
             --btn-whatsapp: #63b96f;
             --btn-eco: #9933cc;
-            --btn-fb: #1877f2;
-            --btn-insta: #ff5733;
             --btn-tiktok: #ffffff;
         }
 
@@ -45,99 +43,129 @@
 
         /* --- ANIMACIONES --- */
         @keyframes floatCard {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
 
-        .floating-card { animation: floatCard 6s ease-in-out infinite; }
+        .floating-card { animation: floatCard 7s ease-in-out infinite; }
 
         /* --- ESTILO DE LA TARJETA (RÉPLICA EXACTA) --- */
         .nexus-card {
             width: 320px;
             background: var(--card-bg);
-            border: 1px solid #333;
-            border-radius: 18px;
+            border: 1px solid #222;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.05);
             position: relative;
             z-index: 10;
-            /* Borde Neon inferior característico de tu diseño */
-            border-bottom: 4px solid var(--btn-email); 
-            border-left: 4px solid var(--btn-eco);
+            /* Toque Neón sutil */
+            box-shadow: 0 0 40px rgba(0, 243, 255, 0.05);
         }
 
         /* Avatar con brillo */
         .card-avatar-container {
             width: 100px;
             height: 100px;
-            margin: 0 auto 15px;
+            margin: 30px auto 15px; /* Espacio superior */
             border-radius: 50%;
             padding: 3px;
             background: #111;
             border: 2px solid white;
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            box-shadow: 0 0 25px rgba(255,255,255,0.15);
+            position: relative;
         }
 
         .card-avatar-container img {
             width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
         }
 
-        /* Botones Sólidos (Estilo Bloque) */
+        /* Botones Sólidos */
         .card-btn {
             display: flex; align-items: center;
             padding: 14px 16px;
             border-radius: 12px;
             font-weight: 700; font-size: 13px;
             color: white; text-decoration: none;
-            transition: transform 0.2s;
+            transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             margin-bottom: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2); /* Efecto 3D sutil */
+            border: 1px solid rgba(255,255,255,0.05);
         }
-        .card-btn:hover { transform: scale(1.02); filter: brightness(1.1); }
+        .card-btn:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3); 
+            filter: brightness(1.1); 
+        }
         .card-btn i { font-size: 18px; margin-right: 12px; width: 20px; text-align: center; }
 
         /* Colores Específicos */
         .c-linkedin { background-color: var(--btn-linkedin); }
-        .c-email { background-color: var(--btn-email); color: #332400; } /* Texto oscuro para contraste */
-        .c-ipn { background-color: var(--btn-ipn); }
+        .c-email { background-color: var(--btn-email); color: #332400; }
         .c-whatsapp { background-color: var(--btn-whatsapp); color: #052e16; }
         .c-eco { background-color: var(--btn-eco); }
-        .c-fb { background-color: var(--btn-fb); }
-        .c-tiktok { background-color: var(--btn-tiktok); color: black; }
+        
+        /* Botón Portafolio Especial (Blanco) */
+        .btn-portfolio-white {
+            background: white; color: black;
+            font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+            font-size: 12px; padding: 12px 20px;
+            border-radius: 50px;
+            display: inline-flex; align-items: center; gap: 8px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            transition: all 0.3s;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        .btn-portfolio-white:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255,255,255,0.4);
+        }
 
-        /* TOOLTIP PARA LOS BOTONES DE CARACTERÍSTICAS */
+        /* --- TOOLTIP MEJORADO (EFECTO CRISTAL + ANIMACIÓN) --- */
         .feature-btn { position: relative; cursor: pointer; transition: all 0.3s; }
-        .feature-btn:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+        .feature-btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
         
         .tooltip {
             visibility: hidden; opacity: 0;
-            width: 220px;
-            background-color: #1a1a1a;
-            color: #fff;
+            width: 260px;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(12px); /* Efecto Cristal */
+            -webkit-backdrop-filter: blur(12px);
+            color: #e2e8f0;
             text-align: center;
-            border-radius: 8px;
-            padding: 10px;
+            border-radius: 12px;
+            padding: 15px;
             position: absolute;
-            z-index: 1;
-            bottom: 125%; /* Posición encima del botón */
+            z-index: 50;
+            bottom: 135%; /* Más arriba */
             left: 50%;
-            margin-left: -110px;
-            border: 1px solid #333;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            font-size: 12px;
-            line-height: 1.4;
-            font-weight: normal;
-            transition: opacity 0.3s;
+            transform: translateX(-50%) translateY(10px); /* Estado inicial para animación */
+            border: 1px solid rgba(0, 243, 255, 0.3); /* Borde neón sutil */
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            font-size: 13px;
+            line-height: 1.5;
+            font-weight: 400;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Rebote suave */
+            pointer-events: none;
         }
         
+        /* Flecha del Tooltip */
         .tooltip::after {
-            content: ""; position: absolute; top: 100%; left: 50%; margin-left: -5px;
-            border-width: 5px; border-style: solid; border-color: #1a1a1a transparent transparent transparent;
+            content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px;
+            border-width: 6px; border-style: solid; 
+            border-color: rgba(0, 243, 255, 0.3) transparent transparent transparent; /* Color del borde */
         }
 
-        /* Mostrar tooltip al hover o click */
-        .feature-btn:hover .tooltip, .feature-btn:focus .tooltip { visibility: visible; opacity: 1; }
+        /* Animación al Hover */
+        .feature-btn:hover .tooltip, .feature-btn:focus .tooltip { 
+            visibility: visible; 
+            opacity: 1; 
+            transform: translateX(-50%) translateY(0); /* Sube a su posición */
+        }
+
+        .tooltip strong { color: white; display: block; margin-bottom: 4px; }
 
     </style>
 </head>
@@ -157,12 +185,14 @@
         
         <!-- Fondos Ambientales -->
         <div class="absolute inset-0 bg-black -z-20"></div>
+        <!-- Malla decorativa sutil -->
+        <div class="absolute inset-0 opacity-20 -z-10" style="background-image: radial-gradient(#333 1px, transparent 1px); background-size: 30px 30px;"></div>
         <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[120px] -z-10"></div>
         <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyan-900/10 rounded-full blur-[120px] -z-10"></div>
 
         <div class="container mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
             
-            <!-- TEXTO DE VENTA -->
+            <!-- TEXTO DE VENTA (IZQUIERDA) -->
             <div class="text-left space-y-8 order-2 lg:order-1">
                 <div class="inline-block px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-900/10 text-cyan-400 text-xs font-bold tracking-[0.2em] uppercase shadow-[0_0_20px_rgba(0,243,255,0.1)]">
                     Propuesta de Concepto
@@ -178,84 +208,95 @@
                     Ideal para universitarios, emprendedores y profesionales que buscan destacar con un solo clic.
                 </p>
 
-                <!-- BOTONES DE CARACTERÍSTICAS (CON TOOLTIPS) -->
+                <!-- BOTONES CON TOOLTIPS MEJORADOS -->
                 <div class="flex flex-wrap gap-4 pt-4">
                     
-                    <!-- Botón 1 -->
                     <div class="feature-btn flex items-center gap-2 text-sm font-bold text-slate-200 bg-white/5 px-5 py-3 rounded-lg border border-white/10" tabindex="0">
                         <i class="fa-solid fa-bolt text-yellow-400"></i> Creación Instantánea
-                        <span class="tooltip">Genera tu tarjeta en segundos importando tus datos de LinkedIn o redes sociales automáticamente sin llenar formularios largos.</span>
+                        <div class="tooltip">
+                            <strong>⚡ Sin Formularios Aburridos</strong>
+                            Genera tu tarjeta en segundos importando tus datos de LinkedIn o redes sociales automáticamente.
+                        </div>
                     </div>
 
-                    <!-- Botón 2 -->
                     <div class="feature-btn flex items-center gap-2 text-sm font-bold text-slate-200 bg-white/5 px-5 py-3 rounded-lg border border-white/10" tabindex="0">
                         <i class="fa-solid fa-wand-magic-sparkles text-purple-400"></i> Asistente IA
-                        <span class="tooltip">¿No sabes qué poner en tu biografía? Nuestra IA redacta textos profesionales y mejora tu foto de perfil al instante.</span>
+                        <div class="tooltip">
+                            <strong>🤖 Tu Redactor Personal</strong>
+                            ¿No sabes qué poner? Nuestra IA redacta biografías profesionales y mejora tus fotos al instante.
+                        </div>
                     </div>
 
-                    <!-- Botón 3 -->
                     <div class="feature-btn flex items-center gap-2 text-sm font-bold text-slate-200 bg-white/5 px-5 py-3 rounded-lg border border-white/10" tabindex="0">
-                        <i class="fa-solid fa-layer-group text-cyan-400"></i> Portafolio 3D
-                        <span class="tooltip">Muestra tus proyectos, menús o catálogos dentro de la misma tarjeta con una galería interactiva y descargable.</span>
+                        <i class="fa-solid fa-mobile-screen text-green-400"></i> 100% Móvil
+                        <div class="tooltip">
+                            <strong>📱 Optimizado para Celular</strong>
+                            Diseñado para compartir por WhatsApp, QR o NFC. Carga instantánea y diseño adaptativo.
+                        </div>
                     </div>
 
                 </div>
             </div>
 
-            <!-- TARJETA DEMO (VISUAL) -->
+            <!-- TARJETA DEMO (DERECHA) -->
             <div class="flex justify-center order-1 lg:order-2 perspective-1000">
                 
-                <!-- Tarjeta Flotante -->
-                <div class="nexus-card floating-card p-6">
+                <!-- Efectos de Fondo detrás de la tarjeta -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-cyan-500/20 rounded-full blur-[80px] -z-10 animate-pulse"></div>
+
+                <!-- LA TARJETA NEXUS -->
+                <div class="nexus-card floating-card">
                     
-                    <!-- Encabezado Perfil -->
-                    <div class="text-center mb-6 relative">
+                    <!-- Cuerpo -->
+                    <div class="px-6 py-8 text-center bg-black">
+                        
+                        <!-- 1. Avatar -->
                         <div class="card-avatar-container">
                             <img src="profilecv.png" onerror="this.src='https://cdn.midjourney.com/7b22a01d-55e1-4828-b80c-7b247f93796d/0_0.png'" alt="Sergio">
                         </div>
-                        
-                        <h2 class="text-2xl font-black text-white mb-1">Sergio Garduño</h2>
-                        <p class="text-xs font-bold text-pink-500 uppercase tracking-widest mb-2">Mecatrónico & Dev</p>
-                        
-                        <!-- Botón Portafolio Destacado (Blanco) -->
-                        <div class="mt-4 flex justify-center">
-                            <button class="bg-white text-black px-6 py-2 rounded-full font-bold text-sm flex items-center gap-2 shadow-lg hover:scale-105 transition-transform">
-                                <i class="fa-solid fa-briefcase"></i> Portafolio Digital
-                            </button>
-                        </div>
-                    </div>
 
-                    <!-- Lista de Botones (Estilo Bloque Colorido) -->
-                    <div class="space-y-3">
+                        <!-- 2. Nombre y Cargo -->
+                        <h2 class="text-2xl font-black text-white mb-1 font-display tracking-tight">Sergio Garduño</h2>
+                        <p class="text-xs font-bold text-pink-500 uppercase tracking-widest mb-4">Mecatrónico & Dev</p>
                         
-                        <a href="#" class="card-btn c-linkedin">
-                            <i class="fa-brands fa-linkedin"></i> Ver Perfil de LinkedIn
-                        </a>
-                        
-                        <a href="#" class="card-btn c-email">
-                            <i class="fa-regular fa-envelope"></i> sgj.cheko@gmail.com
-                        </a>
-                        
-                        <a href="#" class="card-btn c-ipn">
-                            <i class="fa-solid fa-graduation-cap"></i> Correo Institucional
+                        <!-- 3. BIO (AQUÍ ESTÁ LA INFORMACIÓN PREVIA AL BOTÓN) -->
+                        <p class="text-[13px] text-slate-400 leading-relaxed mb-5 px-2 font-medium">
+                            Ingeniero Mecatrónico enfocado en desarrollos IoT y protección de la flora y fauna con iniciativas verdes.
+                        </p>
+
+                        <!-- 4. BOTÓN PORTAFOLIO (DESTACADO) -->
+                        <a href="#" class="btn-portfolio-white">
+                            <i class="fa-solid fa-briefcase"></i> Portafolio Digital
                         </a>
 
-                        <div class="grid grid-cols-2 gap-3">
-                            <a href="#" class="card-btn c-whatsapp justify-center">
-                                <i class="fa-brands fa-whatsapp m-0"></i>
+                        <!-- 5. LISTA DE BOTONES DE COLORES (COMO EN TU FOTO) -->
+                        <div class="space-y-3 mt-4">
+                            <a href="#" class="card-btn c-linkedin">
+                                <i class="fa-brands fa-linkedin-in"></i> Ver Perfil de LinkedIn
                             </a>
-                            <a href="#" class="card-btn c-eco justify-center">
-                                <i class="fa-solid fa-leaf m-0"></i>
+                            
+                            <a href="#" class="card-btn c-email">
+                                <i class="fa-regular fa-envelope"></i> sgj.cheko@gmail.com
                             </a>
+                            
+                            <a href="#" class="card-btn c-whatsapp">
+                                <i class="fa-brands fa-whatsapp"></i> Contactar WhatsApp
+                            </a>
+
+                            <div class="grid grid-cols-2 gap-3">
+                                <a href="#" class="card-btn c-eco justify-center">
+                                    <i class="fa-solid fa-leaf m-0"></i>
+                                </a>
+                                <a href="#" class="card-btn justify-center bg-white text-black hover:bg-gray-200">
+                                    <i class="fa-brands fa-tiktok m-0"></i>
+                                </a>
+                            </div>
                         </div>
 
                     </div>
                     
-                    <!-- Footer interno -->
-                    <div class="mt-6 text-center opacity-30">
-                        <img src="Nexus.png" onerror="this.style.display='none'" class="w-6 h-6 mx-auto mb-1 grayscale">
-                        <p class="text-[10px] uppercase tracking-widest">Powered by Nexus</p>
-                    </div>
+                    <!-- Borde Inferior Neón (Tu firma visual) -->
+                    <div class="h-1 w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
 
                 </div>
             </div>

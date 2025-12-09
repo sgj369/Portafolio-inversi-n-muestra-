@@ -187,17 +187,19 @@
 </head>
 <body class="selection:bg-cyan-500 selection:text-black">
 
-    <!-- PANTALLA DE CARGA (PRELOADER) -->
-    <div id="preloader" class="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-content-center transition-opacity duration-700">
+        <!-- PANTALLA DE CARGA (PRELOADER) -->
+    <!-- Nota: 'justify-center' asegura el centrado vertical perfecto -->
+    <div id="preloader" class="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center transition-opacity duration-700">
         
-        <img src="Nexus.gif" alt="Cargando Nexus..." class="w-32 h-32 object-contain mb-4">
+        <!-- GIF-->
+        <img src="Nexus.gif" onerror="this.style.display='none'" alt="Cargando Nexus..." class="w-32 h-32 object-contain mb-4">
         
         <!-- Barra de carga decorativa -->
         <div class="w-48 h-1 bg-gray-800 rounded-full overflow-hidden">
             <div class="h-full bg-cyan-500 animate-[loading_2s_ease-in-out_infinite]"></div>
         </div>
         
-        <p class="text-cyan-500 text-xs font-mono mt-4 animate-pulse">INICIANDO SISTEMA...</p>
+        <p class="text-cyan-500 text-xs font-mono mt-4 animate-pulse uppercase tracking-widest">INICIANDO SISTEMA...</p>
     </div>
 
     <!-- SCRIPT PARA OCULTAR EL PRELOADER -->
@@ -210,7 +212,7 @@
                 setTimeout(() => {
                     preloader.style.display = 'none';
                 }, 700); // Tiempo que tarda en desaparecer (fade out)
-            }, 2000); // Tiempo mínimo que se muestra el logo (2 segundos)
+            }, 2500); // Tiempo mínimo que se muestra el logo (2.5 segundos)
         });
     </script>
 
